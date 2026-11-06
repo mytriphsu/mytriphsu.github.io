@@ -4,1550 +4,352 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>MYTRIPHSU | 나만의 여행을 시작하세요</title>
-
 <style>
-:root {
-    --primary: #2864e8;
-    --primary-dark: #174bbd;
-    --primary-light: #eef4ff;
-    --navy: #24344d;
-    --text: #26344a;
-    --muted: #7b8798;
-    --border: #e5eaf1;
-    --white: #ffffff;
-    --shadow: 0 12px 35px rgba(25,55,100,.10);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, "Malgun Gothic", sans-serif;
-    color: var(--text);
-    background: #fff;
-}
-
-button, input, select {
-    font-family: inherit;
-}
-
-button {
-    cursor: pointer;
-    border: none;
-}
-
-/* SVG ICON SYSTEM */
-
-.svg-icon {
-    width: 23px;
-    height: 23px;
-    display: inline-block;
-    flex-shrink: 0;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.7;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    transition: all .25s ease;
-}
-
-.field-icon {
-    width: 16px;
-    height: 16px;
-    vertical-align: -3px;
-    color: var(--primary);
-    margin-right: 5px;
-}
-
-/* MAIN LAYOUT */
-
-.container {
-    display: flex;
-    min-height: 100vh;
-}
-
-/* SIDEBAR */
-
-.sidebar {
-    width: 214px;
-    min-width: 214px;
-    border-right: 1px solid var(--border);
-    background: white;
-    min-height: 100vh;
-}
-
-.logo {
-    height: 66px;
-    display: flex;
-    align-items: center;
-    padding-left: 22px;
-    border-bottom: 1px solid var(--border);
-}
-
-.brand-name {
-    color: var(--primary);
-    font-size: 25px;
-    font-weight: 800;
-    letter-spacing: -1.2px;
-}
-
-.menu-list {
-    padding: 12px 5px;
-}
-
-.menu {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 13px 15px;
-    margin: 3px 5px;
-    border-radius: 8px;
-    font-size: 14px;
-    color: var(--navy);
-    cursor: pointer;
-    transition: all .25s ease;
-}
-
-.menu:hover {
-    background: var(--primary-light);
-    color: var(--primary);
-    transform: translateX(3px);
-}
-
-.menu:hover .svg-icon {
-    transform: scale(1.1);
-}
-
-.menu.active {
-    background: var(--primary-light);
-    color: var(--primary);
-    font-weight: 700;
-}
-
-.menu-icon {
-    width: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.menu-divider {
-    border-top: 1px solid var(--border);
-    margin: 12px 15px;
-}
-
-/* MAIN */
-
-.main {
-    flex: 1;
-    min-width: 0;
-    padding: 0 32px 40px;
-}
-
-/* TOP BAR */
-
-.topbar {
-    height: 85px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 24px;
-    font-size: 13px;
-}
-
-.topbar a {
-    color: var(--navy);
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.topbar a:hover {
-    color: var(--primary);
-}
-
-.topbar .svg-icon {
-    width: 17px;
-    height: 17px;
-    vertical-align: middle;
-    margin-right: 4px;
-}
-
-.login-link {
-    color: var(--primary) !important;
-    font-weight: 700;
-}
-
-/* HERO */
-
-.hero {
-    min-height: 400px;
-    border-radius: 16px;
-    padding: 43px 30px 0;
-    position: relative;
-    background: linear-gradient(
-        115deg,
-        #1556d9 0%,
-        #397ce9 55%,
-        #1c55c5 100%
-    );
-    overflow: visible;
-}
-
-.hero::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: 100px;
-    width: 30%;
-    height: 180px;
-    background: rgba(255,255,255,.05);
-    transform: skewY(-12deg);
-    pointer-events: none;
-}
-
-.hero-title {
-    text-align: center;
-    color: white;
-    font-size: 38px;
-    font-weight: 800;
-    letter-spacing: -1.5px;
-    position: relative;
-    z-index: 1;
-}
-
-.hero-subtitle {
-    text-align: center;
-    margin-top: 15px;
-    color: #e9f0ff;
-    font-size: 14px;
-}
-
-/* SEARCH BOX */
-
-.search-box {
-    background: white;
-    color: var(--text);
-    border-radius: 16px;
-    padding: 24px 20px;
-    margin-top: 42px;
-    position: relative;
-    z-index: 2;
-    box-shadow: var(--shadow);
-}
-
-/* TABS */
-
-.tabs {
-    display: flex;
-    justify-content: space-around;
-    gap: 8px;
-    margin-bottom: 20px;
-}
-
-.tab {
-    flex: 1;
-    min-width: 70px;
-    background: white;
-    color: #526077;
-    border-bottom: 2px solid transparent;
-    border-radius: 8px 8px 0 0;
-    padding: 8px 5px 13px;
-    font-size: 14px;
-    transition: all .25s ease;
-}
-
-.tab .svg-icon {
-    display: block;
-    width: 30px;
-    height: 30px;
-    margin: 0 auto 9px;
-    color: #738198;
-}
-
-.tab:hover {
-    background: #f5f8ff;
-    color: var(--primary);
-}
-
-.tab:hover .svg-icon {
-    color: var(--primary);
-    transform: translateY(-3px);
-}
-
-.tab.active {
-    color: var(--primary);
-    font-weight: 700;
-    background: #f5f8ff;
-    border-bottom: 2px solid var(--primary);
-}
-
-.tab.active .svg-icon {
-    color: var(--primary);
-}
-
-/* SEARCH FIELDS */
-
-.search-fields {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
-    gap: 10px;
-}
-
-.field {
-    min-width: 0;
-    border: 1px solid #dce3ee;
-    border-radius: 6px;
-    padding: 12px;
-    transition: border .2s;
-}
-
-.field:focus-within {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 2px rgba(40,100,232,.08);
-}
-
-.field label {
-    display: block;
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 9px;
-}
-
-.field input,
-.field select {
-    width: 100%;
-    border: none;
-    outline: none;
-    font-size: 14px;
-    color: var(--navy);
-    background: white;
-    min-width: 0;
-}
-
-.field input::placeholder {
-    color: #aab3c0;
-}
-
-/* BUTTONS */
-
-.search-action {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 12px;
-}
-
-.search-button {
-    background: var(--primary);
-    color: white;
-    padding: 13px 24px;
-    border-radius: 5px;
-    font-size: 15px;
-    font-weight: 700;
-    transition: .2s;
-}
-
-.search-button:hover {
-    background: var(--primary-dark);
-    transform: translateY(-1px);
-}
-
-.search-button .svg-icon {
-    width: 19px;
-    height: 19px;
-    vertical-align: middle;
-    margin-right: 5px;
-}
-
-.member-link {
-    text-align: right;
-    margin-top: 20px;
-    padding-top: 15px;
-    border-top: 1px solid var(--border);
-    color: var(--primary);
-    font-size: 13px;
-}
-
-.member-link a {
-    text-decoration: none;
-    color: var(--primary);
-    font-weight: 700;
-}
-
-/* PROMOTION */
-
-.promotion {
-    margin-top: 65px;
-}
-
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
-}
-
-.section-title {
-    font-size: 28px;
-    font-weight: 800;
-    letter-spacing: -1px;
-}
-
-.section-more {
-    color: var(--primary);
-    font-size: 13px;
-    cursor: pointer;
-}
-
-.promotion-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-}
-
-.promotion-card {
-    min-height: 150px;
-    padding: 20px;
-    border: 1px solid #ffd6e0;
-    border-radius: 10px;
-    background: linear-gradient(135deg,#fff,#fff5f8);
-    transition: all .25s;
-}
-
-.promotion-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow);
-}
-
-.promo-label {
-    color: #818b9c;
-    font-size: 12px;
-}
-
-.promotion-card h3 {
-    color: var(--primary);
-    font-size: 24px;
-    margin-top: 12px;
-}
-
-.promotion-card button {
-    background: none;
-    color: var(--primary);
-    font-weight: 700;
-    font-size: 13px;
-    margin-top: 15px;
-}
-
-/* HOTEL RECOMMENDATIONS */
-
-.recommend {
-    margin-top: 60px;
-}
-
-.hotel-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.hotel-card {
-    border: 1px solid var(--border);
-    border-radius: 11px;
-    overflow: hidden;
-    transition: .25s;
-    background: white;
-}
-
-.hotel-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow);
-}
-
-.hotel-image {
-    height: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg,#dceafa,#a7c5e9);
-    color: #3264a3;
-}
-
-.hotel-image .svg-icon {
-    width: 55px;
-    height: 55px;
-    stroke-width: 1.2;
-}
-
-.hotel-info {
-    padding: 17px;
-}
-
-.hotel-info h3 {
-    font-size: 17px;
-    margin-bottom: 9px;
-}
-
-.hotel-info p {
-    color: var(--muted);
-    font-size: 13px;
-    margin-bottom: 10px;
-}
-
-.rating {
-    color: #f1a72c;
-    font-size: 13px;
-}
-
-.price {
-    color: var(--primary);
-    font-size: 21px;
-    font-weight: 800;
-    margin-top: 13px;
-}
-
-.book-button {
-    width: 100%;
-    padding: 11px;
-    background: var(--primary);
-    color: white;
-    border-radius: 5px;
-    margin-top: 12px;
-    font-weight: 700;
-    transition: .2s;
-}
-
-.book-button:hover {
-    background: var(--primary-dark);
-}
-
-/* SEARCH RESULTS */
-
-.results {
-    display: none;
-    margin-top: 55px;
-    scroll-margin-top: 25px;
-}
-
-.result-item {
-    display: flex;
-    gap: 18px;
-    align-items: center;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px;
-    margin-bottom: 12px;
-}
-
-.result-image {
-    width: 110px;
-    height: 95px;
-    background: #e7f0ff;
-    border-radius: 8px;
-    display: grid;
-    place-items: center;
-    color: var(--primary);
-    flex-shrink: 0;
-}
-
-.result-image .svg-icon {
-    width: 40px;
-    height: 40px;
-}
-
-.result-info {
-    flex: 1;
-}
-
-.result-info h3 {
-    margin-bottom: 8px;
-}
-
-.result-info p {
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 8px;
-}
-
-.result-price {
-    color: var(--primary);
-    font-size: 19px;
-    font-weight: 800;
-    white-space: nowrap;
-}
-
-/* FOOTER */
-
-footer {
-    margin-top: 65px;
-    padding: 25px 0;
-    border-top: 1px solid var(--border);
-    color: #9aa4b2;
-    font-size: 12px;
-    line-height: 1.8;
-}
-
-/* TOAST */
-
-.toast {
-    position: fixed;
-    bottom: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 14px 22px;
-    background: #26344a;
-    color: white;
-    border-radius: 8px;
-    font-size: 14px;
-    box-shadow: var(--shadow);
-    display: none;
-    z-index: 100;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:1100px) {
-    .sidebar {
-        width: 180px;
-        min-width: 180px;
-    }
-
-    .main {
-        padding: 0 20px 30px;
-    }
-
-    .search-fields {
-        grid-template-columns: repeat(2,1fr);
-    }
-
-    .promotion-grid {
-        grid-template-columns: repeat(2,1fr);
-    }
-}
-
-@media(max-width:700px) {
-    .sidebar {
-        display: none;
-    }
-
-    .main {
-        padding: 0 12px 30px;
-    }
-
-    .topbar {
-        height: 60px;
-        gap: 13px;
-        font-size: 12px;
-    }
-
-    .hero {
-        padding: 30px 12px 0;
-        min-height: 440px;
-    }
-
-    .hero-title {
-        font-size: 25px;
-        line-height: 1.4;
-    }
-
-    .hero-subtitle {
-        font-size: 11px;
-    }
-
-    .search-box {
-        padding: 14px 10px;
-        margin-top: 30px;
-    }
-
-    .tabs {
-        overflow-x: auto;
-        justify-content: flex-start;
-    }
-
-    .tab {
-        min-width: 75px;
-        font-size: 12px;
-    }
-
-    .tab .svg-icon {
-        width: 25px;
-        height: 25px;
-    }
-
-    .search-fields {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .promotion-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 9px;
-    }
-
-    .promotion-card {
-        padding: 14px;
-    }
-
-    .promotion-card h3 {
-        font-size: 20px;
-    }
-
-    .hotel-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-    }
-
-    .hotel-image {
-        height: 120px;
-    }
-
-    .hotel-info {
-        padding: 12px;
-    }
-
-    .hotel-info h3 {
-        font-size: 14px;
-    }
-
-    .result-item {
-        gap: 10px;
-        flex-wrap: wrap;
-    }
-
-    .result-image {
-        width: 75px;
-        height: 75px;
-    }
-
-    .section-title {
-        font-size: 23px;
-    }
-}
+:root{--blue:#2864e8;--blue-dark:#174bbd;--navy:#24344d;--text:#26344a;--muted:#7b8798;--border:#e5eaf1;--pale:#eef4ff;--shadow:0 12px 35px rgba(25,55,100,.10)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,"Malgun Gothic",sans-serif;color:var(--text);background:#fff}
+button,input,select{font:inherit}
+button{cursor:pointer;border:0}
+a{color:inherit;text-decoration:none}
+.layout{display:flex;min-height:100vh}
+.sidebar{width:214px;min-width:214px;border-right:1px solid var(--border);background:#fff}
+.logo{height:66px;display:flex;align-items:center;padding:0 22px;border-bottom:1px solid var(--border)}
+.brand{font-size:25px;font-weight:900;letter-spacing:-1.2px;color:var(--blue)}
+.brand span{color:#ff9a32}
+.menu-list{padding:12px 8px}
+.menu{display:flex;align-items:center;gap:14px;padding:13px 12px;margin:3px 0;border-radius:9px;font-size:14px;color:var(--navy);transition:.2s}
+.menu:hover,.menu.active{background:var(--pale);color:var(--blue)}
+.menu .ico{width:25px;text-align:center;font-size:20px}
+.menu-divider{border-top:1px solid var(--border);margin:12px 8px}
+.main{flex:1;min-width:0;padding:0 32px 45px}
+.topbar{height:85px;display:flex;align-items:center;justify-content:flex-end;gap:24px;font-size:13px;color:var(--navy)}
+.topbar a:hover{color:var(--blue)}
+.hero{min-height:395px;border-radius:16px;padding:42px 30px 0;position:relative;background:linear-gradient(115deg,#1556d9,#397ce9 55%,#1c55c5);overflow:visible}
+.hero h1{text-align:center;color:#fff;font-size:clamp(25px,3vw,38px);font-weight:850;letter-spacing:-1.4px}
+.hero-sub{text-align:center;margin-top:14px;color:#e9f0ff;font-size:14px}
+.search-box{position:relative;z-index:2;background:#fff;border-radius:16px;padding:23px 20px;margin-top:40px;box-shadow:var(--shadow)}
+.tabs{display:flex;justify-content:space-around;gap:8px;margin-bottom:20px}
+.tab{flex:1;min-width:65px;padding:8px 5px 13px;background:#fff;color:#526077;border-bottom:2px solid transparent;border-radius:8px 8px 0 0;font-size:14px}
+.tab .ico{display:block;font-size:27px;margin-bottom:7px}
+.tab.active{color:var(--blue);font-weight:700;background:#f5f8ff;border-color:var(--blue)}
+.fields{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:10px}
+.field{min-width:0;border:1px solid #dce3ee;border-radius:7px;padding:11px 12px}
+.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:8px}
+.field input,.field select{width:100%;border:0;outline:0;color:var(--navy);font-size:14px;background:#fff;min-width:0}
+.search-action{display:flex;justify-content:flex-end;margin-top:12px}
+.search-btn{background:var(--blue);color:white;padding:13px 24px;border-radius:6px;font-weight:700}
+.search-btn:hover{background:var(--blue-dark)}
+.member-link{text-align:right;margin-top:17px;padding-top:14px;border-top:1px solid var(--border);font-size:13px;color:var(--blue)}
+.member-link a{font-weight:700}
+.promotion{margin-top:65px;scroll-margin-top:20px}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.section-head h2{font-size:28px;letter-spacing:-1px}
+.section-head span{font-size:13px;color:var(--blue)}
+.ab-banner{width:100%;overflow:hidden;border-radius:13px;box-shadow:var(--shadow);background:#eef4ff}
+.ab-banner a{display:block;width:100%}
+.ab-banner img{display:block;width:100%;height:auto;aspect-ratio:2/1;object-fit:contain}
+.recommend{margin-top:58px}
+.hotel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.hotel-card{border:1px solid var(--border);border-radius:11px;overflow:hidden;background:#fff;transition:.2s}
+.hotel-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.hotel-photo{height:170px;display:grid;place-items:center;background:linear-gradient(135deg,#dceafa,#a7c5e9);font-size:55px}
+.hotel-info{padding:16px}
+.hotel-info h3{font-size:16px;margin-bottom:8px}
+.hotel-info p{font-size:13px;color:var(--muted);margin-bottom:9px}
+.rating{color:#f1a72c;font-size:13px}
+.price{color:var(--blue);font-size:20px;font-weight:800;margin-top:12px}
+.book-btn{width:100%;padding:10px;margin-top:11px;border-radius:6px;background:var(--blue);color:white;font-weight:700}
+.results{display:none;margin-top:45px;scroll-margin-top:20px}
+.result-row{border:1px solid var(--border);border-radius:10px;padding:16px;margin:12px 0;display:flex;align-items:center;gap:15px}
+.result-icon{width:75px;height:70px;border-radius:8px;background:var(--pale);display:grid;place-items:center;font-size:30px}
+.result-row p{color:var(--muted);font-size:13px;margin-top:5px}
+footer{margin-top:65px;padding:25px 0;border-top:1px solid var(--border);color:#9aa4b2;font-size:12px;line-height:1.8}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);padding:13px 20px;border-radius:9px;background:#24344d;color:#fff;box-shadow:var(--shadow);display:none;z-index:10;font-size:14px}
+@media(max-width:1100px){.sidebar{width:180px;min-width:180px}.main{padding:0 20px 35px}.fields{grid-template-columns:repeat(2,1fr)}.hotel-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.sidebar{display:none}.main{padding:0 12px 30px}.topbar{height:60px;gap:13px;font-size:12px}.hero{padding:28px 12px 0;min-height:440px}.hero h1{font-size:25px;line-height:1.4}.hero-sub{font-size:11px}.search-box{padding:14px 10px;margin-top:28px}.tabs{overflow-x:auto;justify-content:flex-start}.tab{min-width:72px;font-size:12px}.tab .ico{font-size:23px}.fields{grid-template-columns:1fr 1fr}.section-head h2{font-size:23px}.ab-banner img{aspect-ratio:auto}.hotel-grid{grid-template-columns:1fr 1fr;gap:10px}.hotel-photo{height:115px}.hotel-info{padding:11px}.hotel-info h3{font-size:13px}.hotel-info p{font-size:11px}.price{font-size:17px}}
 </style>
 </head>
-
 <body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="logo"><a class="brand" href="#">MYTRIP<span>HSU</span></a></div>
+    <nav class="menu-list">
+      <a class="menu active" href="#search"><span class="ico">🛏️</span>숙소</a>
+      <a class="menu" href="#search"><span class="ico">✈️</span>항공권</a>
+      <a class="menu" href="#search"><span class="ico">🎟️</span>투어 & 티켓</a>
+      <a class="menu" href="#search"><span class="ico">🚄</span>기차표</a>
+      <a class="menu" href="#search"><span class="ico">🚗</span>렌터카·공항픽업</a>
+      <div class="menu-divider"></div>
+      <a class="menu" href="#recommend"><span class="ico">🛡️</span>여행자 보험</a>
+      <a class="menu" href="#recommend"><span class="ico">🧳</span>프라이빗 투어</a>
+      <a class="menu" href="#recommend"><span class="ico">🚢</span>크루즈</a>
+      <a class="menu" href="#recommend"><span class="ico">💡</span>여행 아이디어</a>
+      <a class="menu" href="#recommend"><span class="ico">📍</span>지도</a>
+    </nav>
+  </aside>
 
-<!-- SVG ICON LIBRARY -->
+  <main class="main">
+    <header class="topbar">
+      <a href="#">🌐 한국어</a>
+      <a href="#">₩ KRW</a>
+      <a class="login" href="#" onclick="showToast('로그인 기능은 실험용 페이지에서 제공되지 않습니다.');return false;">로그인</a>
+    </header>
 
-<svg xmlns="http://www.w3.org/2000/svg"
-     style="display:none">
+    <section class="hero" id="search">
+      <h1>지금, 나만의 숙소로 체크인하세요</h1>
+      <p class="hero-sub">✓ 최저가 보장　 |　 ▣ 호텔 예약 보장　 |　 ✈ 특별한 여행 혜택</p>
 
-    <symbol id="i-hotel" viewBox="0 0 24 24">
-        <path d="M3 20V9h18v11"/>
-        <path d="M3 14h18M5 9V5h5v4M14 9V5h5v4"/>
-        <path d="M7 14v2m10-2v2M2 20h20"/>
-    </symbol>
-
-    <symbol id="i-plane" viewBox="0 0 24 24">
-        <path d="M2 16l8-4L6 4l2-1 7 7 6-3c1.5-.7 2.5.8 1.5 2L17 15l-1 6-2 1-2-6-8 2z"/>
-    </symbol>
-
-    <symbol id="i-train" viewBox="0 0 24 24">
-        <rect x="5" y="2" width="14" height="17" rx="4"/>
-        <path d="M5 13h14M9 6h.01M15 6h.01M8 22l2-3m6 3-2-3M8 16h.01M16 16h.01"/>
-    </symbol>
-
-    <symbol id="i-car" viewBox="0 0 24 24">
-        <path d="M5 11l2-6h10l2 6"/>
-        <path d="M3 11h18v8H3zM3 15h18"/>
-        <circle cx="7" cy="19" r="1.5"/>
-        <circle cx="17" cy="19" r="1.5"/>
-        <path d="M7 11l1-4h8l1 4"/>
-    </symbol>
-
-    <symbol id="i-ticket" viewBox="0 0 24 24">
-        <path d="M3 7a2 2 0 0 0 0 4v6h18v-6a2 2 0 0 1 0-4V5H3z"/>
-        <path d="M14 5v2m0 3v2m0 3v2M7 9h3"/>
-    </symbol>
-
-    <symbol id="i-package" viewBox="0 0 24 24">
-        <rect x="3" y="8" width="18" height="13" rx="2"/>
-        <path d="M8 8V5h8v3M3 13h18M12 13v8"/>
-        <path d="M7 3l2-2 3 3 3-3 2 2-5 5z"/>
-    </symbol>
-
-    <symbol id="i-shield" viewBox="0 0 24 24">
-        <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/>
-        <path d="M9 12l2 2 4-4"/>
-    </symbol>
-
-    <symbol id="i-luggage" viewBox="0 0 24 24">
-        <rect x="5" y="7" width="14" height="14" rx="2"/>
-        <path d="M9 7V4a3 3 0 0 1 6 0v3M9 11v6m6-6v6M9 21v1m6-1v1"/>
-    </symbol>
-
-    <symbol id="i-cruise" viewBox="0 0 24 24">
-        <path d="M3 15h18l-3 5H7z"/>
-        <path d="M8 15V8h8v7M11 8V4h4v4"/>
-        <path d="M2 21c2 1 4 1 6 0s4-1 6 0 4 1 8 0"/>
-    </symbol>
-
-    <symbol id="i-map" viewBox="0 0 24 24">
-        <path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/>
-        <path d="M9 3v15m6-12v15"/>
-    </symbol>
-
-    <symbol id="i-discover" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="9"/>
-        <path d="M15.5 8.5l-2 5-5 2 2-5z"/>
-        <circle cx="12" cy="12" r="1"/>
-    </symbol>
-
-    <symbol id="i-search" viewBox="0 0 24 24">
-        <circle cx="10.8" cy="10.8" r="7"/>
-        <path d="M16 16l5 5"/>
-    </symbol>
-
-    <symbol id="i-location" viewBox="0 0 24 24">
-        <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0z"/>
-        <circle cx="12" cy="10" r="2.5"/>
-    </symbol>
-
-    <symbol id="i-calendar" viewBox="0 0 24 24">
-        <rect x="3" y="5" width="18" height="16" rx="2"/>
-        <path d="M16 3v4M8 3v4M3 10h18"/>
-        <path d="M8 14h2m4 0h2m-8 3h2"/>
-    </symbol>
-
-    <symbol id="i-user" viewBox="0 0 24 24">
-        <circle cx="12" cy="8" r="4"/>
-        <path d="M4 21a8 8 0 0 1 16 0"/>
-    </symbol>
-
-    <symbol id="i-globe" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="9"/>
-        <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>
-    </symbol>
-
-</svg>
-
-
-<div class="container">
-
-<!-- SIDEBAR -->
-
-<aside class="sidebar">
-
-    <div class="logo">
-        <span class="brand-name">mytriphsu</span>
-    </div>
-
-    <div class="menu-list">
-
-        <div class="menu active">
-            <span class="menu-icon">
-                <svg class="svg-icon"><use href="#i-hotel"/></svg>
-            </span>
-            숙소
+      <div class="search-box">
+        <div class="tabs">
+          <button class="tab active" type="button"><span class="ico">🛏️</span>숙소</button>
+          <button class="tab" type="button"><span class="ico">✈️</span>항공권</button>
+          <button class="tab" type="button"><span class="ico">🚆</span>기차표</button>
+          <button class="tab" type="button"><span class="ico">🚘</span>렌터카</button>
+          <button class="tab" type="button"><span class="ico">🎡</span>투어&티켓</button>
+          <button class="tab" type="button"><span class="ico">🏨</span>항공+호텔</button>
         </div>
 
-        <div class="menu">
-            <span class="menu-icon">
-                <svg class="svg-icon"><use href="#i-plane"/></svg>
-            </span>
-            항공권
+        <div class="fields">
+          <div class="field">
+            <label>📍 어디로 떠날까요?</label>
+            <input id="destination" type="text" value="서울, 대한민국" placeholder="여행지를 입력하세요">
+          </div>
+          <div class="field">
+            <label>📅 체크인</label>
+            <input id="checkin" type="date">
+          </div>
+          <div class="field">
+            <label>📅 체크아웃</label>
+            <input id="checkout" type="date">
+          </div>
+          <div class="field">
+            <label>👤 객실 및 인원</label>
+            <select id="guests">
+              <option>객실 1개 · 성인 2명</option>
+              <option>객실 1개 · 성인 1명</option>
+              <option>객실 1개 · 성인 2명 · 어린이 1명</option>
+              <option>객실 2개 · 성인 4명</option>
+            </select>
+          </div>
         </div>
+        <div class="search-action"><button class="search-btn" onclick="searchTravel()">⌕ 검색</button></div>
+        <div class="member-link">로그인 또는 <a href="#" onclick="showToast('회원가입 기능은 실험용 페이지에서 제공되지 않습니다.');return false;">회원가입</a>하고 특별 쿠폰과 혜택 받기</div>
+      </div>
+    </section>
 
-        <div class="menu">
-            <span class="menu-icon">
-                <svg class="svg-icon"><use href="#i-ticket"/></svg>
-            </span>
-            투어 & 티켓
-        </div>
+    <section class="promotion" id="promotion">
+      <div class="section-head">
+        <h2>신규회원 전용</h2>
+        <span>MYTRIPHSU 특별 프로모션</span>
+      </div>
 
-        <div class="menu">
-            <span class="menu-icon">
-                <svg class="svg-icon"><use href="#i-package"/></svg>
-            </span>
-            항공 + 호텔
-        </div>
-
-        <div class="menu">
-            <span class="menu-icon">
-                <svg class="svg-icon"><use href="#i-train"/></svg>
-            </span>
-            기차표
-        </div>
-
-        <div class="menu">
-            <span class="menu-icon">
-                <svg class="svg-icon"><use href="#i-car"/></svg>
-            </span>
-            렌터카·공항픽업
-        </div>
-
-        <div class="menu-divider"></div>
-
-        <div class="menu">
-            <span class="menu-icon">
-                <svg class="svg-icon"><use href="#i-shield"/></svg>
-            </span>
-            여행자 보험
-        </div>
-
-        <div class="menu">
-            <span class="menu-icon">
-                <svg class="svg-icon"><use href="#i-luggage"/></svg>
-            </span>
-            프라이빗 투어
-        </div>
-
-        <div class="menu">
-            <span class="menu-icon">
-                <svg class="svg-icon"><use href="#i-cruise"/></svg>
-            </span>
-            크루즈
-        </div>
-
-        <div class="menu">
-            <span class="menu-icon">
-                <svg class="svg-icon"><use href="#i-discover"/></svg>
-            </span>
-            여행 아이디어
-        </div>
-
-        <div class="menu">
-            <span class="menu-icon">
-                <svg class="svg-icon"><use href="#i-map"/></svg>
-            </span>
-            지도
-        </div>
-
-    </div>
-
-</aside>
-
-
-<!-- MAIN CONTENT -->
-
-<main class="main">
-
-    <!-- TOP BAR -->
-
-    <div class="topbar">
-
-        <a>
-            <svg class="svg-icon"><use href="#i-globe"/></svg>
-            한국어
+      <!-- A/B TEST: 실제 방문자에게 A 또는 B 중 하나만 표시 -->
+      <div class="ab-banner" id="abBanner">
+        <a href="#search" id="abBannerLink" aria-label="프로모션 혜택 확인">
+          <img id="abBannerImage" src="banner%20a.png" alt="MYTRIPHSU 여행 할인 프로모션">
         </a>
-
-        <a>₩ KRW</a>
-
-        <a class="login-link">로그인</a>
-
-        <a class="login-link">회원가입</a>
-
-    </div>
-
-
-    <!-- HERO SECTION -->
-
-    <section class="hero">
-
-        <h1 class="hero-title">
-            지금, 나만의 숙소로 체크인하세요
-        </h1>
-
-        <p class="hero-subtitle">
-            ✓ 최저가 보장　 |　 ▣ 호텔 예약 보장　 |　 특별한 여행 혜택
-        </p>
-
-
-        <!-- SEARCH BOX -->
-
-        <div class="search-box">
-
-            <!-- CATEGORY TABS -->
-
-            <div class="tabs">
-
-                <button class="tab active" data-type="숙소">
-                    <svg class="svg-icon"><use href="#i-hotel"/></svg>
-                    숙소
-                </button>
-
-                <button class="tab" data-type="항공권">
-                    <svg class="svg-icon"><use href="#i-plane"/></svg>
-                    항공권
-                </button>
-
-                <button class="tab" data-type="기차표">
-                    <svg class="svg-icon"><use href="#i-train"/></svg>
-                    기차표
-                </button>
-
-                <button class="tab" data-type="렌터카">
-                    <svg class="svg-icon"><use href="#i-car"/></svg>
-                    렌터카·공항픽업
-                </button>
-
-                <button class="tab" data-type="투어">
-                    <svg class="svg-icon"><use href="#i-ticket"/></svg>
-                    투어&티켓
-                </button>
-
-                <button class="tab" data-type="패키지">
-                    <svg class="svg-icon"><use href="#i-package"/></svg>
-                    항공 + 호텔
-                </button>
-
-            </div>
-
-
-            <!-- SEARCH INPUTS -->
-
-            <div class="search-fields">
-
-                <div class="field">
-
-                    <label>
-                        <svg class="field-icon">
-                            <use href="#i-location"/>
-                        </svg>
-                        어디로 떠날까요?
-                    </label>
-
-                    <input
-                        type="text"
-                        id="destination"
-                        placeholder="도시 또는 숙소명"
-                        value="서울, 대한민국"
-                    >
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>
-                        <svg class="field-icon">
-                            <use href="#i-calendar"/>
-                        </svg>
-                        체크인
-                    </label>
-
-                    <input
-                        type="date"
-                        id="checkin"
-                        value="2026-11-06"
-                    >
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>
-                        <svg class="field-icon">
-                            <use href="#i-calendar"/>
-                        </svg>
-                        체크아웃
-                    </label>
-
-                    <input
-                        type="date"
-                        id="checkout"
-                        value="2026-11-07"
-                    >
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>
-                        <svg class="field-icon">
-                            <use href="#i-user"/>
-                        </svg>
-                        객실 및 인원
-                    </label>
-
-                    <select id="guests">
-
-                        <option>객실 1개 · 성인 2명</option>
-                        <option>객실 1개 · 성인 1명</option>
-                        <option>객실 2개 · 성인 4명</option>
-                        <option>객실 2개 · 성인 2명</option>
-                        <option>객실 3개 · 성인 6명</option>
-
-                    </select>
-
-                </div>
-
-            </div>
-
-
-            <!-- SEARCH BUTTON -->
-
-            <div class="search-action">
-
-                <button class="search-button" onclick="searchHotel()">
-
-                    <svg class="svg-icon">
-                        <use href="#i-search"/>
-                    </svg>
-
-                    검색
-
-                </button>
-
-            </div>
-
-
-            <div class="member-link">
-                로그인 또는 회원가입하고
-                <a href="#" onclick="showMessage('회원 혜택을 확인했습니다.');return false;">
-                    특별 쿠폰과 혜택 받기
-                </a>
-            </div>
-
-        </div>
-
+      </div>
     </section>
 
-
-    <!-- PROMOTION SECTION -->
-
-    <section class="promotion">
-
-        <div class="section-header">
-
-            <h2 class="section-title">신규회원 전용</h2>
-
-            <span class="section-more">
-                모든 혜택 보기 →
-            </span>
-
-        </div>
-
-
-        <div class="promotion-grid">
-
-            <div class="promotion-card">
-
-                <p class="promo-label">
-                    신규 회원 특별 혜택
-                </p>
-
-                <h3>WELCOME</h3>
-
-                <button onclick="showMessage('신규 회원 혜택입니다.')">
-                    혜택 확인 →
-                </button>
-
-            </div>
-
-
-            <div class="promotion-card">
-
-                <p class="promo-label">
-                    첫 예약 특별 할인
-                </p>
-
-                <h3>10% 할인</h3>
-
-                <button onclick="showMessage('10% 할인 쿠폰입니다.')">
-                    쿠폰 받기 →
-                </button>
-
-            </div>
-
-
-            <div class="promotion-card">
-
-                <p class="promo-label">
-                    호텔 예약 한정
-                </p>
-
-                <h3>4% 할인</h3>
-
-                <button onclick="showMessage('호텔 할인 쿠폰입니다.')">
-                    쿠폰 받기 →
-                </button>
-
-            </div>
-
-
-            <div class="promotion-card">
-
-                <p class="promo-label">
-                    특별 여행 혜택
-                </p>
-
-                <h3>10% 할인</h3>
-
-                <button onclick="showMessage('특별 할인 쿠폰입니다.')">
-                    쿠폰 받기 →
-                </button>
-
-            </div>
-
-        </div>
-
+    <section class="recommend" id="recommend">
+      <div class="section-head">
+        <h2>추천 숙소</h2>
+        <span>인기 여행지를 확인해 보세요 →</span>
+      </div>
+      <div class="hotel-grid">
+        <article class="hotel-card">
+          <div class="hotel-photo">🏙️</div>
+          <div class="hotel-info">
+            <h3>서울 시티 프리미엄 호텔</h3>
+            <p>서울 중심부 · 교통 편리</p>
+            <div class="rating">★★★★★ 4.8</div>
+            <div class="price">₩120,000 <small>/ 1박</small></div>
+            <button class="book-btn" onclick="showToast('실험용 페이지입니다. 실제 예약은 진행되지 않습니다.')">객실 확인</button>
+          </div>
+        </article>
+        <article class="hotel-card">
+          <div class="hotel-photo">🌊</div>
+          <div class="hotel-info">
+            <h3>부산 오션뷰 스테이</h3>
+            <p>부산 해운대 · 바다 전망</p>
+            <div class="rating">★★★★★ 4.7</div>
+            <div class="price">₩98,000 <small>/ 1박</small></div>
+            <button class="book-btn" onclick="showToast('실험용 페이지입니다. 실제 예약은 진행되지 않습니다.')">객실 확인</button>
+          </div>
+        </article>
+        <article class="hotel-card">
+          <div class="hotel-photo">🌿</div>
+          <div class="hotel-info">
+            <h3>제주 힐링 리조트</h3>
+            <p>제주도 · 자연 속 휴식</p>
+            <div class="rating">★★★★★ 4.9</div>
+            <div class="price">₩145,000 <small>/ 1박</small></div>
+            <button class="book-btn" onclick="showToast('실험용 페이지입니다. 실제 예약은 진행되지 않습니다.')">객실 확인</button>
+          </div>
+        </article>
+      </div>
     </section>
-
-
-    <!-- RECOMMENDED HOTELS -->
-
-    <section class="recommend">
-
-        <div class="section-header">
-
-            <h2 class="section-title">인기 추천 숙소</h2>
-
-            <span class="section-more">
-                더 보기 →
-            </span>
-
-        </div>
-
-
-        <div class="hotel-grid">
-
-
-            <div class="hotel-card">
-
-                <div class="hotel-image">
-                    <svg class="svg-icon">
-                        <use href="#i-hotel"/>
-                    </svg>
-                </div>
-
-                <div class="hotel-info">
-
-                    <h3>서울 프리미엄 호텔</h3>
-
-                    <p>서울 중심부 · 무료 Wi-Fi</p>
-
-                    <div class="rating">
-                        ★★★★★ 4.8 / 5
-                    </div>
-
-                    <div class="price">
-                        ₩120,000
-                    </div>
-
-                    <button class="book-button"
-                        onclick="showMessage('실험용 페이지입니다. 실제 예약은 지원하지 않습니다.')">
-                        예약하기
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="hotel-card">
-
-                <div class="hotel-image">
-                    <svg class="svg-icon">
-                        <use href="#i-hotel"/>
-                    </svg>
-                </div>
-
-                <div class="hotel-info">
-
-                    <h3>시티뷰 부티크 호텔</h3>
-
-                    <p>서울 · 지하철역 인근</p>
-
-                    <div class="rating">
-                        ★★★★★ 4.6 / 5
-                    </div>
-
-                    <div class="price">
-                        ₩89,000
-                    </div>
-
-                    <button class="book-button"
-                        onclick="showMessage('실험용 페이지입니다. 실제 예약은 지원하지 않습니다.')">
-                        예약하기
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="hotel-card">
-
-                <div class="hotel-image">
-                    <svg class="svg-icon">
-                        <use href="#i-hotel"/>
-                    </svg>
-                </div>
-
-                <div class="hotel-info">
-
-                    <h3>서울 감성 스테이</h3>
-
-                    <p>서울 · 감성 인테리어</p>
-
-                    <div class="rating">
-                        ★★★★★ 4.7 / 5
-                    </div>
-
-                    <div class="price">
-                        ₩75,000
-                    </div>
-
-                    <button class="book-button"
-                        onclick="showMessage('실험용 페이지입니다. 실제 예약은 지원하지 않습니다.')">
-                        예약하기
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- SEARCH RESULTS -->
 
     <section class="results" id="results">
-
-        <div class="section-header">
-
-            <h2 class="section-title">검색 결과</h2>
-
-        </div>
-
-        <p id="search-info"
-           style="margin-bottom:20px;color:#7b8798;font-size:14px;">
-        </p>
-
-
-        <div class="result-item">
-
-            <div class="result-image">
-                <svg class="svg-icon">
-                    <use href="#i-hotel"/>
-                </svg>
-            </div>
-
-            <div class="result-info">
-
-                <h3>서울 프리미엄 호텔</h3>
-
-                <p>서울 중심부 · 무료 Wi-Fi · 조식 포함</p>
-
-                <div class="rating">
-                    ★★★★★ 4.8 / 5
-                </div>
-
-            </div>
-
-            <div>
-
-                <div class="result-price">₩120,000</div>
-
-                <button class="book-button"
-                    onclick="showMessage('실험용 예약 페이지입니다.')">
-                    예약하기
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <div class="result-item">
-
-            <div class="result-image">
-                <svg class="svg-icon">
-                    <use href="#i-hotel"/>
-                </svg>
-            </div>
-
-            <div class="result-info">
-
-                <h3>시티뷰 부티크 호텔</h3>
-
-                <p>서울 · 지하철역 인근 · 무료 취소</p>
-
-                <div class="rating">
-                    ★★★★★ 4.6 / 5
-                </div>
-
-            </div>
-
-            <div>
-
-                <div class="result-price">₩89,000</div>
-
-                <button class="book-button"
-                    onclick="showMessage('실험용 예약 페이지입니다.')">
-                    예약하기
-                </button>
-
-            </div>
-
-        </div>
-
+      <div class="section-head"><h2>검색 결과</h2></div>
+      <div class="result-row"><div class="result-icon">🏨</div><div><strong id="resultDestination">서울</strong><p>검색 조건에 맞는 숙소를 확인해 보세요.</p></div></div>
     </section>
 
-
-    <!-- FOOTER -->
-
     <footer>
-
-        <strong>MYTRIPHSU</strong>
-
-        <br>
-
-        나만의 여행을 시작하세요.
-
-        <br><br>
-
-        © 2026 MYTRIPHSU. All Rights Reserved.
-
-        <br>
-
-        본 웹사이트는 테스트 및 실습을 위한 데모 페이지입니다.
-
+      <strong>MYTRIPHSU</strong><br>
+      본 웹사이트는 A/B 테스트 실험을 위한 데모 페이지입니다.<br>
+      표시된 숙소, 가격, 쿠폰 및 예약 기능은 실제 판매 또는 예약 서비스가 아닙니다.
     </footer>
-
-</main>
-
+  </main>
 </div>
 
-
-<!-- NOTIFICATION -->
-
-<div class="toast" id="toast"></div>
-
+<div class="toast" id="toast" role="status"></div>
 
 <script>
+/* ================================
+   MYTRIPHSU A/B TEST
+   A: TRAVEL20 20% 할인 배너
+   B: 신규 회원 30,000원 웰컴 쿠폰 배너
+   기본 배분: 50% / 50%
+================================ */
 
-// CATEGORY TAB SWITCHING
+(function () {
+  const VARIANT_KEY = "mytriphsu_ab_variant_v1";
+  const STATS_KEY = "mytriphsu_ab_stats_v1";
 
-const tabs = document.querySelectorAll(".tab");
+  const bannerImage = document.getElementById("abBannerImage");
+  const bannerLink = document.getElementById("abBannerLink");
 
-tabs.forEach(tab => {
+  const params = new URLSearchParams(window.location.search);
+  const previewVariant = params.get("variant");
 
-    tab.addEventListener("click", function() {
+  let variant;
 
-        tabs.forEach(item => {
-            item.classList.remove("active");
-        });
+  // URL로 A/B 버전을 미리 볼 수 있도록 설정
+  if (previewVariant === "A" || previewVariant === "B") {
+    variant = previewVariant;
+  } else {
+    // 같은 브라우저에서는 기존 배정 버전을 유지
+    variant = localStorage.getItem(VARIANT_KEY);
 
-        this.classList.add("active");
+    // 신규 방문자는 무작위 50:50 배정
+    if (variant !== "A" && variant !== "B") {
+      variant = Math.random() < 0.5 ? "A" : "B";
+      localStorage.setItem(VARIANT_KEY, variant);
+    }
+  }
 
-        const type = this.dataset.type;
+  // 이미지 파일명은 GitHub 저장소에 업로드한 실제 파일명과 일치해야 합니다.
+  if (variant === "A") {
+    bannerImage.src = "banner%20a.png";
+    bannerImage.alt = "지금 예약하고 특별한 여행 혜택을 누려보세요. TRAVEL20";
+  } else {
+    bannerImage.src = "banner%20b.png";
+    bannerImage.alt = "신규 회원 30,000원 웰컴 쿠폰";
+  }
 
-        const label = document.querySelector(
-            ".search-fields .field:first-child label"
-        );
+  // 실험 버전 표시
+  document.documentElement.dataset.abVariant = variant;
 
-        label.innerHTML =
-            '<svg class="field-icon"><use href="#i-location"/></svg>' +
-            type + ' 목적지를 선택하세요';
+  // 간단한 로컬 통계 저장
+  function readStats() {
+    try {
+      return JSON.parse(localStorage.getItem(STATS_KEY)) || {
+        A: { impressions: 0, clicks: 0 },
+        B: { impressions: 0, clicks: 0 }
+      };
+    } catch (error) {
+      return {
+        A: { impressions: 0, clicks: 0 },
+        B: { impressions: 0, clicks: 0 }
+      };
+    }
+  }
 
-        const input = document.getElementById("destination");
+  const stats = readStats();
+  stats[variant].impressions += 1;
+  localStorage.setItem(STATS_KEY, JSON.stringify(stats));
 
-        input.placeholder = type + " 목적지를 입력하세요";
+  bannerLink.addEventListener("click", function () {
+    const currentStats = readStats();
+    currentStats[variant].clicks += 1;
+    localStorage.setItem(STATS_KEY, JSON.stringify(currentStats));
+  });
 
+  // 개발자 도구 Console에서 showABResults() 실행
+  window.showABResults = function () {
+    const data = readStats();
+    const report = {};
+
+    ["A", "B"].forEach(function (key) {
+      const impressions = data[key].impressions;
+      const clicks = data[key].clicks;
+      report["Version " + key] = {
+        Impressions: impressions,
+        Clicks: clicks,
+        CTR: impressions
+          ? (clicks / impressions * 100).toFixed(2) + "%"
+          : "0%"
+      };
     });
 
-});
+    console.table(report);
+    return report;
+  };
 
+  console.log("MYTRIPHSU A/B Test Version:", variant);
+})();
 
-// HOTEL SEARCH FUNCTION
-
-function searchHotel() {
-
-    const destination =
-        document.getElementById("destination").value.trim();
-
-    const checkin =
-        document.getElementById("checkin").value;
-
-    const checkout =
-        document.getElementById("checkout").value;
-
-    const guests =
-        document.getElementById("guests").value;
-
-    if (destination === "") {
-
-        showMessage("여행 목적지를 입력해 주세요.");
-
-        return;
-    }
-
-    if (!checkin || !checkout || checkout <= checkin) {
-
-        showMessage("체크아웃 날짜를 다시 확인해 주세요.");
-
-        return;
-    }
-
-    const results = document.getElementById("results");
-
-    results.style.display = "block";
-
-    document.getElementById("search-info").textContent =
-        destination + " | " +
-        checkin + " ~ " +
-        checkout + " | " +
-        guests;
-
-    results.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
-
+/* 검색 및 화면 안내용 기능 */
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.style.display = "block";
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(function () {
+    toast.style.display = "none";
+  }, 2600);
 }
 
+function searchTravel() {
+  const destination = document.getElementById("destination").value.trim();
+  if (!destination) {
+    showToast("여행지를 입력해 주세요.");
+    return;
+  }
 
-// NOTIFICATION FUNCTION
-
-let toastTimer;
-
-function showMessage(message) {
-
-    const toast = document.getElementById("toast");
-
-    toast.textContent = message;
-
-    toast.style.display = "block";
-
-    clearTimeout(toastTimer);
-
-    toastTimer = setTimeout(function() {
-
-        toast.style.display = "none";
-
-    }, 2500);
-
+  document.getElementById("resultDestination").textContent = destination;
+  const results = document.getElementById("results");
+  results.style.display = "block";
+  results.scrollIntoView({ behavior: "smooth" });
+  showToast(destination + " 검색 조건이 적용되었습니다.");
 }
 
+// 날짜 기본값: 오늘과 내일
+(function setDefaultDates() {
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
 
-// SIDEBAR ACTIVE STATE
+  function toDateInput(date) {
+    const local = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+    return local.toISOString().slice(0, 10);
+  }
 
-const menus = document.querySelectorAll(".menu");
+  document.getElementById("checkin").value = toDateInput(today);
+  document.getElementById("checkout").value = toDateInput(tomorrow);
+})();
 
-menus.forEach(menu => {
-
-    menu.addEventListener("click", function() {
-
-        menus.forEach(item => {
-            item.classList.remove("active");
-        });
-
-        this.classList.add("active");
-
+// 검색 탭의 선택 표시
+document.querySelectorAll(".tab").forEach(function (tab) {
+  tab.addEventListener("click", function () {
+    document.querySelectorAll(".tab").forEach(function (item) {
+      item.classList.remove("active");
     });
-
+    tab.classList.add("active");
+  });
 });
-
 </script>
-
 </body>
 </html>
